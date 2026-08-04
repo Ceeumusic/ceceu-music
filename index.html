@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceceu Music</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 { color: #1db954; }
+        .player-container {
+            background-color: #181818;
+            padding: 20px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .track-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; }
+        .track-artist { color: #b3b3b3; margin-bottom: 15px; }
+        audio { width: 100%; margin-top: 10px; }
+        ul { list-style: none; padding: 0; width: 100%; max-width: 400px; margin-top: 20px; }
+        li {
+            background-color: #282828;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+        li:hover { background-color: #3e3e3e; }
+    </style>
+</head>
+<body>
+
+    <h1>Ceceu Music</h1>
+
+    <div class="player-container">
+        <div class="track-title" id="title">Selecione uma música</div>
+        <div class="track-artist" id="artist">Ceceu</div>
+        <audio id="audio-player" controls src=""></audio>
+    </div>
+
+    <ul id="playlist"></ul>
+
+    <script>
+        const tracks = [
+            { title: "A Tua Luz Me Guia", file: "A tua luz me guia (1).mp3" },
+            { title: "Sinal Fechado", file: "Coração, parado no sinal.mp3" },
+            { title: "Cores da Incompreensão", file: "Cores da Incompreensão (1).mp3" },
+            { title: "Deixa (Instrumental)", file: "Deixa (Instrumental).mp3" },
+            { title: "Baile de Galpão", file: "baile de galpão (1).mp3" },
+            { title: "Cicatrizes de Vidro", file: "cicatriz de vidro .mp3" }
+        ];
+
+        const audio = document.getElementById('audio-player');
+        const title = document.getElementById('title');
+        const playlist = document.getElementById('playlist');
+
+        tracks.forEach((track, index) => {
+            const li = document.createElement('li');
+            li.textContent = track.title;
+            li.onclick = () => {
+                audio.src = track.file;
+                title.textContent = track.title;
+                audio.play();
+            };
+            playlist.appendChild(li);
+        });
+    </script>
+</body>
+</html>
